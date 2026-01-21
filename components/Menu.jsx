@@ -1,3 +1,8 @@
+import { useCart } from "@/context/CartContext";
+
+const { addToCart } = useCart();
+
+
 const items = [
   { name: "Grilled Mandi", desc: "Traditional mandi flavor", price: "₨1200" },
   { name: "Chicken BBQ", desc: "Smoky & juicy", price: "₨850" },
@@ -19,12 +24,13 @@ export default function Menu() {
             <p className="text-gray-500 mt-2">{item.desc}</p>
             <p className="mt-4 font-bold">{item.price}</p>
 
-            <a
-              href={`https://wa.me/923001234567?text=I%20want%20to%20order%20${encodeURIComponent(item.name)}`}
-              className="block mt-5 bg-black text-white text-center py-2 rounded hover:bg-gray-800"
+            <button
+            onClick={() => addToCart(item)}
+            className="mt-5 w-full bg-black text-white py-2 rounded hover:bg-gray-800"
             >
-              Order on WhatsApp
-            </a>
+              Add to Cart
+            </button>
+
           </div>
         ))}
       </div>
