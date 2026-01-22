@@ -1,13 +1,16 @@
-"use client";
-
 import "./globals.css";
-import { CartProvider } from "@/context/CartContext";
+import { Providers } from "./providers";
+
+export const metadata = {
+  title: "AI Restaurant",
+  description: "Smart food ordering",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <CartProvider>{children}</CartProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
