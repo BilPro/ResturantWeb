@@ -2,8 +2,8 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata = {
-  title: "AI Restaurant",
-  description: "Smart food ordering",
+  title: "Restaurant",
+  description: "Food ordering app",
 };
 
 export default function RootLayout({ children }) {
