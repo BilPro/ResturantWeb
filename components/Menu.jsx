@@ -2,40 +2,28 @@
 
 import { useCart } from "@/context/CartContext";
 
-const { addToCart } = useCart();
-
-
 const items = [
-  { name: "Grilled Mandi", desc: "Traditional mandi flavor", price: "1200" },
-  { name: "Chicken BBQ", desc: "Smoky & juicy", price: "850" },
-  { name: "Zinger Burger", desc: "Crispy delight", price: "550" },
+  { id: 1, name: "Chicken Mandi", price: 1200 },
+  { id: 2, name: "Beef Mandi", price: 1500 },
 ];
 
 export default function Menu() {
+  const { addToCart } = useCart();   // ✅ INSIDE component
+
   return (
-    <section id="menu" className="max-w-6xl mx-auto py-20 px-6">
-      <h2 className="text-3xl font-bold mb-10 text-center">Our Menu</h2>
-
-      <div className="grid md:grid-cols-3 gap-8">
-        {items.map((item, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-xl shadow hover:shadow-lg transition p-6"
-          >
-            <h3 className="text-xl font-semibold">{item.name}</h3>
-            <p className="text-gray-500 mt-2">{item.desc}</p>
-            <p className="mt-4 font-bold">₨ {item.price}</p>
-
-            <button
+    <div className="max-w-4xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {items.map((item) => (
+        <div key={item.id} className="border p-4 rounded shadow">
+          <h2 className="text-xl font-bold">{item.name}</h2>
+          <p className="text-gray-600">Rs {item.price}</p>
+          <button
             onClick={() => addToCart(item)}
-            className="mt-5 w-full bg-black text-white py-2 rounded hover:bg-gray-800"
-            >
-              Add to Cart
-            </button>
-
-          </div>
-        ))}
-      </div>
-    </section>
+            className="mt-3 bg-green-600 text-white px-4 py-2 rounded"
+          >
+            Add to Cart
+          </button>
+        </div>
+      ))}
+    </div>
   );
 }

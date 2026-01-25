@@ -1,15 +1,11 @@
-"use client";
-
-import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
+import Providers from "./providers";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <CartProvider>
-          {children}
-        </CartProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
