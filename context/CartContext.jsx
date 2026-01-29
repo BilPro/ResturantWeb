@@ -23,11 +23,29 @@ export function CartProvider({ children }) {
     });
   };
 
+  const increaseQty = (id) => {
+    setCart((prev) =>
+      prev.map((i) =>
+        i.id === id ? { ...i, quantity: i.quantity + 1 } : i
+      )
+    );
+  };
+
+  const decreaseQty = (id) => {
+    setCart((prev) =>
+      prev
+        .map((i) =>
+          i.id === id
+            ? { ...i, quantity: i.quantity - 1 }
+            : i
+        )
+        .filter((i) => i.quantity > 0)
+    );
+  };
+
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((i) => i.id !== id));
   };
-
-  const clearCart = () => setCart([]);
 
   const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = cart.reduce(
@@ -40,8 +58,9 @@ export function CartProvider({ children }) {
       value={{
         cart,
         addToCart,
+        increaseQty,
+        decreaseQty,
         removeFromCart,
-        clearCart,
         totalItems,
         totalPrice,
       }}
